@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 class CartPage:
     def __init__(self, driver):
@@ -8,6 +9,7 @@ class CartPage:
         self.carrinho_icone = (By.CLASS_NAME, "shopping_cart_link")
         self.botao_checkout = (By.ID, "checkout")
         self.cart_badge = (By.CLASS_NAME, "shopping_cart_badge")
+        self.cart_list = (By.CLASS_NAME, "cart_list")
 
     def adicionar_produto(self, produto_id):
         WebDriverWait(self.driver, 10).until(
@@ -22,16 +24,14 @@ class CartPage:
             EC.element_to_be_clickable(self.carrinho_icone)
         ).click()
         WebDriverWait(self.driver, 10).until(
-            EC.url_contains("cart")
+            EC.presence_of_element_located(self.cart_list)
         )
 
     def ir_para_checkout(self):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.botao_checkout)
         ).click()
-        import time
         time.sleep(2)
-        print(f"\nURL após clicar checkout: {self.driver.current_url}")
         WebDriverWait(self.driver, 15).until(
             EC.url_contains("checkout-step-one")
         )

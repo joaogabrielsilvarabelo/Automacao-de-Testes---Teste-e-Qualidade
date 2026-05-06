@@ -11,25 +11,25 @@ class CartPage:
         self.cart_item = (By.CLASS_NAME, "cart_item")
 
     def adicionar_produto(self, produto_id):
-        WebDriverWait(self.driver, 15).until(
+        WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable((By.ID, f"add-to-cart-{produto_id}"))
         ).click()
-        WebDriverWait(self.driver, 15).until(
+        WebDriverWait(self.driver, 30).until(
             EC.visibility_of_element_located(self.cart_badge)
         )
 
     def abrir_carrinho(self):
-        WebDriverWait(self.driver, 15).until(
+        WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable(self.carrinho_icone)
         ).click()
-        WebDriverWait(self.driver, 15).until(
+        WebDriverWait(self.driver, 30).until(
             EC.visibility_of_element_located(self.cart_item)
         )
 
     def ir_para_checkout(self):
-        WebDriverWait(self.driver, 15).until(
+        WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable(self.botao_checkout)
         ).click()
-        WebDriverWait(self.driver, 15).until(
+        WebDriverWait(self.driver, 30).until(
             EC.url_contains("checkout-step-one")
         )

@@ -29,3 +29,26 @@ def test_fazer_login_usuario():
 
     assert response.status_code == 200
     assert "logged in user session" in response.json()["message"] 
+    
+def test_buscar_usuario_por_username():
+    r = requests.get(f"{URL_API}/user/joao_qa")
+    assert r.status_code == 200
+    assert r.json()["username"] == "joao_qa"
+
+def test_atualizar_usuario():
+    payload = {
+        "id": 6767,
+        "username": "joao_qa",
+        "firstName": "Joao Atualizado",
+        "lastName": "Rabelo",
+        "email": "joao@email.com",
+        "password": "123",
+        "phone": "99999999",
+        "userStatus": 0
+    }
+    r = requests.put(f"{URL_API}/user/joao_qa", json=payload)
+    assert r.status_code == 200
+
+def test_deletar_usuario():
+    r = requests.delete(f"{URL_API}/user/joao_qa")
+    assert r.status_code == 200

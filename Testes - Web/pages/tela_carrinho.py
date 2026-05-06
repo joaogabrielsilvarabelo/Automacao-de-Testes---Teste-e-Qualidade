@@ -8,6 +8,7 @@ class CartPage:
         self.carrinho_icone = (By.CLASS_NAME, "shopping_cart_link")
         self.botao_checkout = (By.ID, "checkout")
         self.cart_badge = (By.CLASS_NAME, "shopping_cart_badge")
+        self.cart_item = (By.CLASS_NAME, "cart_item")
 
     def adicionar_produto(self, produto_id):
         WebDriverWait(self.driver, 40).until(
@@ -22,7 +23,7 @@ class CartPage:
             EC.element_to_be_clickable(self.carrinho_icone)
         ).click()
         WebDriverWait(self.driver, 40).until(
-            EC.url_contains("cart")
+            EC.visibility_of_element_located(self.cart_item)
         )
 
     def ir_para_checkout(self):

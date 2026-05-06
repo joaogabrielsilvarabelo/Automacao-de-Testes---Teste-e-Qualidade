@@ -29,6 +29,9 @@ class CartPage:
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.botao_checkout)
         ).click()
-        WebDriverWait(self.driver, 10).until(
+        import time
+        time.sleep(2)
+        print(f"\nURL após clicar checkout: {self.driver.current_url}")
+        WebDriverWait(self.driver, 15).until(
             EC.url_contains("checkout-step-one")
         )

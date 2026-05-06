@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class CheckoutPage:
     def __init__(self, driver):
@@ -14,10 +16,16 @@ class CheckoutPage:
         self.driver.find_element(*self.primeiro_nome_field).send_keys(nome)
         self.driver.find_element(*self.sobrenome_field).send_keys(sobrenome)
         self.driver.find_element(*self.cep_field).send_keys(cep)
-        self.driver.find_element(*self.continue_button).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.continue_button)
+        ).click()
 
     def finalizar_compra(self):
-        self.driver.find_element(*self.finish_button).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.finish_button)
+        ).click()
 
     def obter_mensagem_sucesso(self):
-        return self.driver.find_element(*self.success_message).text
+        return WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(self.success_message)
+        ).text

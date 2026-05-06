@@ -1,6 +1,6 @@
 import requests
 
-from config import BASE_URL;
+from config_api import URL_API;
 
 def test_criar_usuario_com_sucesso():
     payload = {
@@ -14,7 +14,7 @@ def test_criar_usuario_com_sucesso():
         "userStatus": 0
     }
 
-    response = requests.post(f"{BASE_URL}/user", json=payload)
+    response = requests.post(f"{URL_API}/user", json=payload)
 
     assert response.status_code == 200  
     assert response.json()["message"] == "6767" 
@@ -25,7 +25,7 @@ def test_fazer_login_usuario():
         "password": "123"
     }
 
-    response = requests.get(f"{BASE_URL}/user/login", params=params)
+    response = requests.get(f"{URL_API}/user/login", params=params)
 
     assert response.status_code == 200
     assert "logged in user session" in response.json()["message"] 

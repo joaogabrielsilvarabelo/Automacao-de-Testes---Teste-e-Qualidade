@@ -1,10 +1,10 @@
 import requests
-from config import BASE_URL
+from config_api import URL_API
 
 ORDER_ID = 1001
 
 def test_consultar_inventario():
-    r = requests.get(f"{BASE_URL}/store/inventory")
+    r = requests.get(f"{URL_API}/store/inventory")
     assert r.status_code == 200
     assert isinstance(r.json(), dict)
 
@@ -16,21 +16,21 @@ def test_criar_pedido():
         "status": "placed",
         "complete": False
     }
-    r = requests.post(f"{BASE_URL}/store/order", json=payload)
+    r = requests.post(f"{URL_API}/store/order", json=payload)
     assert r.status_code == 200
     assert r.json()["id"] == ORDER_ID
     assert r.json()["status"] == "placed"
 
 def test_buscar_pedido_por_id():
-    r = requests.get(f"{BASE_URL}/store/order/{ORDER_ID}")
+    r = requests.get(f"{URL_API}/store/order/{ORDER_ID}")
     assert r.status_code == 200
     assert r.json()["id"] == ORDER_ID
     assert r.json()["petId"] == 9999
 
 def test_deletar_pedido():
-    r = requests.delete(f"{BASE_URL}/store/order/{ORDER_ID}")
+    r = requests.delete(f"{URL_API}/store/order/{ORDER_ID}")
     assert r.status_code == 200
 
 def test_buscar_pedido_deletado_retorna_404():
-    r = requests.get(f"{BASE_URL}/store/order/{ORDER_ID}")
+    r = requests.get(f"{URL_API}/store/order/{ORDER_ID}")
     assert r.status_code == 404

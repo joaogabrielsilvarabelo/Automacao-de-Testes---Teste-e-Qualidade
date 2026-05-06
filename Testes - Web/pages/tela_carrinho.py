@@ -7,7 +7,6 @@ class CartPage:
         self.driver = driver
         self.carrinho_icone = (By.ID, "shopping_cart_container")
         self.botao_checkout = (By.ID, "checkout")
-        self.primeiro_nome_field = (By.ID, "first-name")
 
     def adicionar_produto(self, produto_id):
         WebDriverWait(self.driver, 10).until(
@@ -18,6 +17,9 @@ class CartPage:
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.carrinho_icone)
         ).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.url_contains("cart")
+        )
 
     def ir_para_checkout(self):
         WebDriverWait(self.driver, 10).until(

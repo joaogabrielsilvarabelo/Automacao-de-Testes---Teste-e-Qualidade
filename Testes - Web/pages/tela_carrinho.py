@@ -10,10 +10,14 @@ class CartPage:
         self.primeiro_nome_field = (By.ID, "first-name")
 
     def adicionar_produto(self, produto_id):
-        self.driver.find_element(By.ID, f"add-to-cart-{produto_id}").click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.ID, f"add-to-cart-{produto_id}"))
+        ).click()
 
     def abrir_carrinho(self):
-        self.driver.find_element(*self.carrinho_icone).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.carrinho_icone)
+        ).click()
 
     def ir_para_checkout(self):
         WebDriverWait(self.driver, 10).until(

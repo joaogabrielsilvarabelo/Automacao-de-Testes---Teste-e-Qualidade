@@ -13,4 +13,6 @@ class CartPage:
         self.driver.find_element(*self.carrinho_icone).click()
 
     def ir_para_checkout(self):
-        self.driver.find_element(*self.botao_checkout).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.botao_checkout)
+        ).click()

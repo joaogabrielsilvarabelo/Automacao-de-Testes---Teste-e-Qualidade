@@ -16,9 +16,10 @@ class CheckoutPage:
         self.driver.find_element(*self.primeiro_nome_field).send_keys(nome)
         self.driver.find_element(*self.sobrenome_field).send_keys(sobrenome)
         self.driver.find_element(*self.cep_field).send_keys(cep)
+        self.driver.find_element(*self.continue_button).click()
         WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.continue_button)
-        ).click()
+            EC.presence_of_element_located(self.finish_button)
+        )
 
     def finalizar_compra(self):
         WebDriverWait(self.driver, 10).until(

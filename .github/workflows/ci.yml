@@ -15,20 +15,20 @@ jobs:
 
     steps:
       - name: Clonar repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configurar Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Instalar dependências dos testes de API
+      - name: Instalar dependências
         run: pip install -r requirements.txt
-        working-directory: Testes-API
+        working-directory: ${{ github.workspace }}/Testes-API
 
       - name: Executar testes de API
         run: pytest testes/ -v
-        working-directory: Testes-API
+        working-directory: ${{ github.workspace }}/Testes-API
 
   web:
     name: Testes Web
@@ -36,20 +36,20 @@ jobs:
 
     steps:
       - name: Clonar repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configurar Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Instalar Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Instalar dependências dos testes de web
+      - name: Instalar dependências
         run: pip install -r requirements.txt
-        working-directory: Testes-Web
+        working-directory: ${{ github.workspace }}/Testes-Web
 
       - name: Executar testes Web
         run: pytest testes/ -v
-        working-directory: Testes-Web
+        working-directory: ${{ github.workspace }}/Testes-Web

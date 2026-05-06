@@ -23,7 +23,7 @@ class CartPage:
             EC.element_to_be_clickable(self.carrinho_icone)
         ).click()
         WebDriverWait(self.driver, 40).until(
-            EC.visibility_of_element_located(self.cart_item)
+            EC.element_to_be_clickable(self.cart_item)
         )
 
     def ir_para_checkout(self):

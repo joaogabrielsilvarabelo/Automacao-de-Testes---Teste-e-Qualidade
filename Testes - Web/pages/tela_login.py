@@ -15,5 +15,5 @@ class LoginPage:
         self.driver.find_element(*self.password_field).send_keys(senha)
         self.driver.find_element(*self.login_button).click()
         WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located(self.inventory_container)
+            EC.element_to_be_clickable(self.inventory_container)
         )

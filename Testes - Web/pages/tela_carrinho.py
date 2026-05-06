@@ -23,6 +23,3 @@ class CartPage:
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.botao_checkout)
         ).click()
-        WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located(self.primeiro_nome_field)
-        )

@@ -19,10 +19,10 @@ class CartPage:
         )
 
     def abrir_carrinho(self):
-        WebDriverWait(self.driver, 40).until(
+        WebDriverWait(self.driver, 60).until(
             EC.element_to_be_clickable(self.carrinho_icone)
         ).click()
-        WebDriverWait(self.driver, 40).until(
+        WebDriverWait(self.driver, 60).until(
             EC.element_to_be_clickable(self.cart_item)
         )
 

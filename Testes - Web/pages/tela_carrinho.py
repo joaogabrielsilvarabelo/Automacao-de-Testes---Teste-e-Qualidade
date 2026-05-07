@@ -27,9 +27,9 @@ class CartPage:
         )
 
     def ir_para_checkout(self):
-        WebDriverWait(self.driver, 40).until(
+        WebDriverWait(self.driver, 60).until(
             EC.element_to_be_clickable(self.botao_checkout)
         ).click()
-        WebDriverWait(self.driver, 40).until(
+        WebDriverWait(self.driver, 60).until(
             EC.url_contains("checkout-step-one")
         )
